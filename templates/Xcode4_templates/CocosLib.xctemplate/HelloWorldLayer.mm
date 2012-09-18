@@ -12,7 +12,8 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#import "PhysicsSprite.h"
+#import "CCDraggableSprite.h"
+#import "WorldPhysics.h"
 
 enum {
 	kTagParentNode = 1,
@@ -88,13 +89,10 @@ enum {
 
 -(void) dealloc
 {
-	delete world;
-	world = NULL;
-	
 	delete m_debugDraw;
 	m_debugDraw = NULL;
 	
-}	
+}
 
 -(void) createMenu
 {
@@ -103,6 +101,7 @@ enum {
 	
 	// Reset Button
 	CCMenuItemLabel *reset = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+        [[WorldPhysics sharedInstance] destroyWorld];
 		[[CCDirector sharedDirector] replaceScene: [HelloWorldLayer scene]];
 	}];
 	
@@ -113,7 +112,7 @@ enum {
 		GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
 		achivementViewController.achievementDelegate = self;
 		
-		AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+		AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
 		
 		[[app navController] presentModalViewController:achivementViewController animated:YES];
 		
@@ -126,7 +125,7 @@ enum {
 		GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
 		leaderboardViewController.leaderboardDelegate = self;
 		
-		AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+		AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
 		
 		[[app navController] presentModalViewController:leaderboardViewController animated:YES];
 		
@@ -140,66 +139,23 @@ enum {
 	[menu setPosition:ccp( size.width/2, size.height/2)];
 	
 	
-	[self addChild: menu z:-1];	
+	[self addChild: menu z:-1];
 }
 
 -(void) initPhysics
 {
-	
-	CGSize s = [[CCDirector sharedDirector] winSize];
-	
-	b2Vec2 gravity;
-	gravity.Set(0.0f, -10.0f);
-	world = new b2World(gravity);
-	
-	
-	// Do we want to let bodies sleep?
-	world->SetAllowSleeping(true);
-	
-	world->SetContinuousPhysics(true);
+    [WorldPhysics sharedInstance].sharedLH= nil;
+    [[WorldPhysics sharedInstance] createWorldFTS];
+    [[WorldPhysics sharedInstance] generateScreenBoundaries];
+    world = [WorldPhysics sharedInstance].sharedWorld;
+    
+    
 	
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
 	world->SetDebugDraw(m_debugDraw);
-	
-	uint32 flags = 0;
-	flags += b2Draw::e_shapeBit;
-	//		flags += b2Draw::e_jointBit;
-	//		flags += b2Draw::e_aabbBit;
-	//		flags += b2Draw::e_pairBit;
-	//		flags += b2Draw::e_centerOfMassBit;
-	m_debugDraw->SetFlags(flags);		
-	
-	
-	// Define the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0); // bottom-left corner
-	
-	// Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = world->CreateBody(&groundBodyDef);
-	
-	// Define the ground box shape.
-	b2EdgeShape groundBox;		
-	
-	// bottom
-	
-	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// top
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// left
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// right
-	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
 }
 
+#if DEBUG==1
 -(void) draw
 {
 	//
@@ -213,10 +169,11 @@ enum {
 	
 	kmGLPushMatrix();
 	
-	world->DrawDebugData();	
+	world->DrawDebugData();
 	
 	kmGLPopMatrix();
 }
+#endif
 
 -(void) addNewSpriteAtPosition:(CGPoint)p
 {
@@ -227,7 +184,7 @@ enum {
 	//just randomly picking one of the images
 	int idx = (CCRANDOM_0_1() > .5 ? 0:1);
 	int idy = (CCRANDOM_0_1() > .5 ? 0:1);
-	PhysicsSprite *sprite = [PhysicsSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];						
+	CCDraggableSprite *sprite = [CCDraggableSprite spriteWithTexture:spriteTexture_ rect:CGRectMake(32 * idx,32 * idy,32,32)];
 	[parent addChild:sprite];
 	
 	sprite.position = ccp( p.x, p.y);
@@ -245,12 +202,16 @@ enum {
 	
 	// Define the dynamic body fixture.
 	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;	
+	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
 	fixtureDef.friction = 0.3f;
 	body->CreateFixture(&fixtureDef);
+    
+    body->SetBullet(true);
+    
+    body->SetUserData((__bridge void*)sprite);
 	
-	[sprite setPhysicsBody:body];
+	//[sprite setPhysicsBody:body];
 }
 
 -(void) update: (ccTime) dt
@@ -260,12 +221,9 @@ enum {
 	//You need to make an informed choice, the following URL is useful
 	//http://gafferongames.com/game-physics/fix-your-timestep/
 	
-	int32 velocityIterations = 8;
-	int32 positionIterations = 1;
-	
-	// Instruct the world to perform a single step of simulation. It is
-	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);	
+    [[WorldPhysics sharedInstance] sharedPhysics]->update(dt);
+    
+    [[WorldPhysics sharedInstance] syncPhysicsSprites];
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -284,13 +242,13 @@ enum {
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	AppDelegate *app = (AppDelegate*) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 

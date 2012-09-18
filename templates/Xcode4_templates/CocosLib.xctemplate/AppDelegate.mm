@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "IntroLayer.h"
 
-@implementation AppController
+@implementation AppDelegate
 
 @synthesize window=window_, navController=navController_, director=director_;
 
