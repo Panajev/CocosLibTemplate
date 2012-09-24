@@ -10,6 +10,8 @@ SAFE_TAG=("" "" "")
 
 LIBS=("Utilities ${SAFE_TAG[0]}" "CocosLib ${SAFE_TAG[1]}" "CocosTools ${SAFE_TAG[2]}")
 rm -rf ~/Programming/SharedLibs
+mkdir -p ~/Programming
+mkdir -p ~/Programming/SharedLibs
 
 for f in "${LIBS[@]}"; do
     set -- $f
@@ -36,8 +38,3 @@ for f in "${LIBS[@]}"; do
     /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild build -target "$1"_script
     cd ..
 done
-
-#mkdir -p ~/Programming
-#mkdir -p GlowGames/SharedLibs
-#cp -Rafp SharedLibs GlowGames/
-
