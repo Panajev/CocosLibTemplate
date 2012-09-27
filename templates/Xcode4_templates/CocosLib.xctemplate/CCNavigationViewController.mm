@@ -1,8 +1,9 @@
 //
 //  CCNavigationViewController.m
+//  ___PROJECTNAME___
 //
-//  Created by Goffredo Marocchi on 9/5/12.
-//  Copyright (c) 2012 IGGS. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
 #import "CCNavigationViewController.h"
@@ -43,21 +44,21 @@
     
     /**
      *How you could programmatically determine whether you would like the method to dynamically decide whether the interface can be autorotated to an orientation or not.
-    if(!delegate.levelLoaded) {
+     if(!delegate.levelLoaded) {
         NSLog(@"%s __ level not loaded", __PRETTY_FUNCTION__);
         return UIInterfaceOrientationMaskPortrait;
-    }
-    
-    NSLog(@"%s __ level loaded", __PRETTY_FUNCTION__);
-    if(![SysTools iPadUI] ) {
+     }
+     
+     NSLog(@"%s __ level loaded", __PRETTY_FUNCTION__);
+     if(![SysTools iPadUI] ) {
         return UIInterfaceOrientationMaskAll;
-    }
-    else {
+     }
+     else {
         return UIInterfaceOrientationMaskAll;
-    }
+     }
      */
     
-    return UIInterfaceOrientationMaskAll;
+    return UIInterfaceOrientationMaskPortrait;
 }
 
 - (BOOL)shouldAutorotate {
@@ -72,21 +73,21 @@
     /**
      *How you could programmatically determine whether you would like the method to dynamically decide whether the interface can be autorotated to an orientation or not.
      
-    if(!delegate.levelLoaded) {
+     if(!delegate.levelLoaded) {
         NSLog(@"%s __ level not loaded", __PRETTY_FUNCTION__);
         return UIInterfaceOrientationIsPortrait(interfaceOrientation);
-    }
-    
-    NSLog(@"%s __ level loaded", __PRETTY_FUNCTION__);
-    if(![SysTools iPadUI] ) {
+     }
+     
+     NSLog(@"%s __ level loaded", __PRETTY_FUNCTION__);
+     if(![SysTools iPadUI] ) {
         return YES;
-    }
-    else {
+     }
+     else {
         return YES;
-    }
+     }
      */
     
-    return YES;
+    return UIInterfaceOrientationIsPortrait(interfaceOrientation);;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -104,12 +105,12 @@
     
     /**
      *A way you could react when the orientation changes.
-    if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
-        [delegate rotatedToLandscape:YES];
-    }
-    else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-        [delegate rotatedToLandscape:NO];
-    }
+     if(UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
+     [delegate rotatedToLandscape:YES];
+     }
+     else if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+     [delegate rotatedToLandscape:NO];
+     }
      */
 }
 

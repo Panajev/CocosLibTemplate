@@ -1,8 +1,9 @@
 //
 //  CCNavigationViewController.h
+//  ___PROJECTNAME___
 //
-//  Created by Goffredo Marocchi on 9/5/12.
-//  Copyright (c) 2012 IGGS. All rights reserved.
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
