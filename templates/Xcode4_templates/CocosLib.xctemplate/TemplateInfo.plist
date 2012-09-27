@@ -51,17 +51,17 @@
 			<key>Path</key>
 			<string>IntroLayer.mm</string>
 		</dict>
-		<key>RootViewController.h</key>
+		<key>CCNavigationViewController.h</key>
 		<dict>
-			<key>Path</key>
-			<string>RootViewController.h</string>
 			<key>TargetIndices</key>
 			<array/>
+			<key>Path</key>
+			<string>CCNavigationViewController.h</string>
 		</dict>
-		<key>RootViewController.m</key>
+		<key>CCNavigationViewController.mm</key>
 		<dict>
 			<key>Path</key>
-			<string>RootViewController.m</string>
+			<string>CCNavigationViewController.mm</string>
 		</dict>
 		<key>AppDelegate.h</key>
 		<dict>
@@ -126,6 +126,8 @@
 		<string>PhysicsSprite.h</string>
 		<string>PhysicsSprite.mm</string>
 		<string>Resources/blocks.png</string>
+		<string>CCNavigationViewController.h</string>
+		<string>CCNavigationViewController.mm</string>
 	</array>
 	<key>Targets</key>
 	<array>

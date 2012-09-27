@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
+#import "CCNavigationViewController.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate, CCDirectorDelegate>
 {
 	UIWindow *window_;
-	UINavigationController *navController_;
+	CCNavigationViewController *navController_;
 	
 	CCDirectorIOS	*__weak director_;							// weak ref
 }

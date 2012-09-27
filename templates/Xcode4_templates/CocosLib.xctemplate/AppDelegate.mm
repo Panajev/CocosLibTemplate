@@ -79,8 +79,8 @@
 	[director_ pushScene: [IntroLayer scene]]; 
 	
 	
-	// Create a Navigation Controller with the Director
-	navController_ = [[UINavigationController alloc] initWithRootViewController:director_];
+	// Create a Navigation Controller with the Director... using a UINavigationController subclass.
+	navController_ = [[CCNavigationViewController alloc] initWithRootViewController:director_];
 	navController_.navigationBarHidden = YES;
 	
 	// set the Navigation Controller as the root view controller
