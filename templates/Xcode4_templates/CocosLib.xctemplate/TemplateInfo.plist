@@ -144,11 +144,11 @@
 				<key>Debug</key>
 				<dict>
 					<key>USER_HEADER_SEARCH_PATHS</key>
-					<string>~/Programming/SharedLibs/Utilities-Debug/include/** ~/Programming/SharedLibs/CocosTools-Debug/include/**</string>
+					<string>~/Programming/SharedLibs/Utilities-Debug/include/** ~/Programming/SharedLibs/CocosTools-Debug/include/** ~/Programming/SharedLibs/PRKit-Debug/include/** ~/Programming/SharedLibs/SneakyInput-Debug/include/**</string>
 					<key>HEADER_SEARCH_PATHS</key>
 					<string>~/Programming/SharedLibs/Cocos-Debug/include/**</string>
 					<key>LIBRARY_SEARCH_PATHS</key>
-					<string>~/Programming/SharedLibs/Utilities-Debug/lib/** ~/Programming/SharedLibs/Cocos-Debug/lib/** ~/Programming/SharedLibs/CocosTools-Debug/lib/**</string>
+					<string>~/Programming/SharedLibs/Utilities-Debug/lib/** ~/Programming/SharedLibs/Cocos-Debug/lib/** ~/Programming/SharedLibs/CocosTools-Debug/lib/** ~/Programming/SharedLibs/PRKit-Debug/lib/** ~/Programming/SharedLibs/SneakyInput-Debug/lib/**</string>
 				</dict>
 			</dict>
 			<key>SharedSettings</key>
@@ -160,17 +160,17 @@
 				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
 				<string>NDEBUG NS_BLOCK_ASSERTIONS=1 DEBUG=0 IPHONE_SDK_PROJECT=1</string>
 				<key>OTHER_LDFLAGS</key>
-				<string>-lCocos -lz -lUtilities -lCocosTools -lsqlite3.0</string>
+				<string>-lCocos -lz -lUtilities -lCocosTools -lPRKit -lSneakyInput -lsqlite3.0</string>
 				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
 				<string>5.0</string>
 				<key>HEADER_SEARCH_PATHS</key>
 				<string>~/Programming/SharedLibs/Cocos/include/**</string>
 				<key>LIBRARY_SEARCH_PATHS</key>
-				<string>~/Programming/SharedLibs/Utilities/lib/** ~/Programming/SharedLibs/Cocos/lib/** ~/Programming/SharedLibs/CocosTools/lib/**</string>
+				<string>~/Programming/SharedLibs/Utilities/lib/** ~/Programming/SharedLibs/Cocos/lib/** ~/Programming/SharedLibs/CocosTools/lib/** ~/Programming/SharedLibs/PRKit/lib/** ~/Programming/SharedLibs/SneakyInput/lib/**</string>
 				<key>ALWAYS_SEARCH_USER_PATHS</key>
 				<string>NO</string>
 				<key>USER_HEADER_SEARCH_PATHS</key>
-				<string>~/Programming/SharedLibs/Utilities/include/** ~/Programming/SharedLibs/CocosTools/include/**</string>
+				<string>~/Programming/SharedLibs/Utilities/include/** ~/Programming/SharedLibs/CocosTools/include/** ~/Programming/SharedLibs/PRKit/include/** ~/Programming/SharedLibs/SneakyInput/include/**</string>
 			</dict>
 		</dict>
 	</array>

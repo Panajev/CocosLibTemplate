@@ -58,7 +58,7 @@
      }
      */
     
-    return UIInterfaceOrientationMaskPortrait;
+    return UIInterfaceOrientationMaskLandscape;
 }
 
 - (BOOL)shouldAutorotate {
@@ -87,7 +87,7 @@
      }
      */
     
-    return UIInterfaceOrientationIsPortrait(interfaceOrientation);;
+    return UIInterfaceOrientationIsLandscape(interfaceOrientation);;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
