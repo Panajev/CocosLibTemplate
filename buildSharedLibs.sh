@@ -1,14 +1,14 @@
 #!/bin/bash
-#Do we need to download the code from GitHub?
+#Do we need to force the script to download the code from GitHub?
 DOWNLOAD_GIT="FALSE"
 
 #To download the latest tag
-SAFE_TAG=("" "" "")
+SAFE_TAG=("" "" "" "" "")
 
 #To download a specific tag
-#SAFE_TAG=("v1.1.2" "v1.2.8" "1.1.6")
+#SAFE_TAG=("v1.1.2" "v1.2.8" "1.1.6" "1.0.0" "1.0.0")
 
-LIBS=("Utilities ${SAFE_TAG[0]}" "CocosLib ${SAFE_TAG[1]}" "CocosTools ${SAFE_TAG[2]}")
+LIBS=("Utilities ${SAFE_TAG[0]}" "CocosLib ${SAFE_TAG[1]}" "CocosTools ${SAFE_TAG[2]}" "PRKit ${SAFE_TAG[3]}" "SneakyInput ${SAFE_TAG[4]}")
 rm -rf ~/Programming/SharedLibs
 mkdir -p ~/Programming
 mkdir -p ~/Programming/SharedLibs
