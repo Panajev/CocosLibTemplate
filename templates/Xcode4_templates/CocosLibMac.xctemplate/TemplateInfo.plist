@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Ancestors</key>
+	<array>
+		<string>com.cocos2d-v2.bundlebase</string>
+		<string>com.cocos2d-v2.macbase</string>
+	</array>
+	<key>Concrete</key>
+	<true/>
+	<key>Description</key>
+	<string>This template provides a starting point for an application that uses cocos2d v2.0 and Box2d for MacOS X (CocosLib set in Release mode, add specific Debug version LIBRARY_SEARCH_PATHS... Cocos --&gt; Cocos-Debug).</string>
+	<key>Identifier</key>
+	<string>com.cocos2d-v2.cocosLibMacTemplate</string>
+	<key>Kind</key>
+	<string>Xcode.Xcode3.ProjectTemplateUnitKind</string>
+	<key>Targets</key>
+	<array>
+		<dict>
+			<key>SharedSettings</key>
+			<dict>
+				<key>ARCHS</key>
+				<string>$(ARCHS_STANDARD_64_BIT)</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-lCocosMac -lz -lUtilitiesMac -lCocosToolsMac -lPRKitMac -lSneakyInputMac -lsqlite3.0</string>
+				<key>HEADER_SEARCH_PATHS</key>
+				<string>~/Programming/SharedLibsMac/CocosMac/include/**</string>
+				<key>USER_HEADER_SEARCH_PATHS</key>
+				<string>~/Programming/SharedLibsMac/UtilitiesMac/include/** ~/Programming/SharedLibsMac/CocosToolsMac/include/** ~/Programming/SharedLibsMac/PRKitMac/include/** ~/Programming/SharedLibsMac/SneakyInputMac/include/**</string>
+				<key>LIBRARY_SEARCH_PATHS</key>
+				<string>~/Programming/SharedLibsMac/UtilitiesMac/lib/** ~/Programming/SharedLibsMac/CocosMac/lib/** ~/Programming/SharedLibsMac/CocosToolsMac/lib/** ~/Programming/SharedLibsMac/PRKitMac/lib/** ~/Programming/SharedLibsMac/SneakyInputMac/lib/**</string>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>YES</string>
+			</dict>
+			<key>Configurations</key>
+			<dict>
+				<key>Debug</key>
+				<dict>
+					<key>LIBRARY_SEARCH_PATHS</key>
+					<string>~/Programming/SharedLibsMac/UtilitiesMac-Debug/lib/** ~/Programming/SharedLibsMac/CocosMac-Debug/lib/** ~/Programming/SharedLibsMac/CocosToolsMac-Debug/lib/** ~/Programming/SharedLibsMac/PRKitMac-Debug/lib/** ~/Programming/SharedLibsMac/SneakyInputMac-Debug/lib/**</string>
+					<key>HEADER_SEARCH_PATHS</key>
+					<string>~/Programming/SharedLibsMac/CocosMac-Debug/include/**</string>
+					<key>USER_HEADER_SEARCH_PATHS</key>
+					<string>~/Programming/SharedLibsMac/UtilitiesMac-Debug/include/** ~/Programming/SharedLibsMac/CocosToolsMac-Debug/include/** ~/Programming/SharedLibsMac/PRKitMac-Debug/include/** ~/Programming/SharedLibsMac/SneakyInputMac-Debug/include/**</string>
+					<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+					<array>
+						<string>CC_ENABLE_BOX2D_INTEGRATION=1</string>
+						<string>DEBUG</string>
+						<string>COCOS2D_DEBUG=1</string>
+					</array>
+				</dict>
+				<key>Release</key>
+				<dict>
+					<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+					<array>
+						<string>CC_ENABLE_BOX2D_INTEGRATION=1</string>
+						<string>NDEBUG</string>
+						<string>NS_BLOCK_ASSERTIONS=1</string>
+					</array>
+				</dict>
+			</dict>
+		</dict>
+	</array>
+	<key>Nodes</key>
+	<array>
+		<string>Prefix.pch</string>
+		<string>main.m</string>
+		<string>AppDelegate.h</string>
+		<string>AppDelegate.mm</string>
+		<string>HelloWorldLayer.h</string>
+		<string>HelloWorldLayer.mm</string>
+		<string>GLES-Render.h</string>
+		<string>GLES-Render.mm</string>
+		<string>Resources/blocks.png</string>
+	</array>
+	<key>Definitions</key>
+	<dict>
+		<key>AppDelegate.h</key>
+		<dict>
+			<key>Path</key>
+			<string>AppDelegate.h</string>
+			<key>TargetIndices</key>
+			<array/>
+		</dict>
+		<key>AppDelegate.mm</key>
+		<dict>
+			<key>Path</key>
+			<string>AppDelegate.mm</string>
+		</dict>
+		<key>GLES-Render.h</key>
+		<dict>
+			<key>Path</key>
+			<string>GLES-Render.h</string>
+			<key>TargetIndices</key>
+			<array/>
+		</dict>
+		<key>GLES-Render.mm</key>
+		<dict>
+			<key>Path</key>
+			<string>GLES-Render.mm</string>
+		</dict>
+		<key>HelloWorldLayer.h</key>
+		<dict>
+			<key>Path</key>
+			<string>HelloWorldLayer.h</string>
+			<key>TargetIndices</key>
+			<array/>
+		</dict>
+		<key>HelloWorldLayer.mm</key>
+		<dict>
+			<key>Path</key>
+			<string>HelloWorldLayer.mm</string>
+		</dict>
+		<key>main.m</key>
+		<dict>
+			<key>Group</key>
+			<string>Supporting Files</string>
+			<key>Path</key>
+			<string>main.m</string>
+		</dict>
+		<key>Prefix.pch</key>
+		<dict>
+			<key>Group</key>
+			<string>Supporting Files</string>
+			<key>Path</key>
+			<string>Prefix.pch</string>
+			<key>TargetIndices</key>
+			<array/>
+		</dict>
+		<key>Resources/blocks.png</key>
+		<dict>
+			<key>Group</key>
+			<string>Resources</string>
+			<key>Path</key>
+			<string>Resources/blocks.png</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

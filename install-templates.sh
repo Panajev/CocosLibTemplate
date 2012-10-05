@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo
-echo 'Welcome to the cocos2d-iphone template installer (Cocos2D iOS + Box2D), CocosLib edition :).'
+echo 'Welcome to the cocos2d-iphone template installer (Cocos2D + Box2D), CocosLib edition :).'
 
 COCOS2D_VER='cocos2d 2.0-beta2'
 SCRIPT_DIR=$(dirname $0)
@@ -73,6 +73,24 @@ check_dst_dir(){
     fi
 }
 
+check_dst_dir_mac(){
+        if [ ! -d "$DST_DIR" ];  then
+        echo "Please install Cocos2D's official templates first..."
+        echo
+        exit 1
+        fi
+
+    if [ -d "$DST_DIR"CocosLibMac.xctemplate ];  then
+        if [ $force ]; then
+            echo Deleting "$DST_DIR"CocosLibMac.xctemplate
+            rm -rf "$DST_DIR"CocosLibMac.xctemplate
+        else
+            echo "Templates already installed. To force a re-install use the '-f' parameter"
+            exit 1
+        fi
+    fi
+}
+
 
 print_template_banner(){
 	echo ''
@@ -88,8 +106,9 @@ copy_xcode4_project_templates(){
 	TEMPLATE_DIR="$HOME/Library/Developer/Xcode/Templates/$COCOS2D_DST_DIR/"
     DST_DIR="$TEMPLATE_DIR"
     check_dst_dir
+    check_dst_dir_mac
 
-	print_template_banner "Installing Xcode 4 CocosLib iOS template"
+	print_template_banner "Installing Xcode 4 CocosLib iOS/MacOS X templates"
 
 	echo ...copying template files
 	copy_files templates/Xcode4_templates/ "$DST_DIR"
