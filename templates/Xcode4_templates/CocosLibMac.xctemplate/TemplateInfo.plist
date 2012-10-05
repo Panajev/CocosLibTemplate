@@ -47,8 +47,8 @@
 					<string>~/Programming/SharedLibsMac/UtilitiesMac-Debug/include/** ~/Programming/SharedLibsMac/CocosToolsMac-Debug/include/** ~/Programming/SharedLibsMac/PRKitMac-Debug/include/** ~/Programming/SharedLibsMac/SneakyInputMac-Debug/include/**</string>
 					<key>GCC_PREPROCESSOR_DEFINITIONS</key>
 					<array>
-						<string>CC_ENABLE_BOX2D_INTEGRATION=1</string>
-						<string>DEBUG</string>
+						<string>NSDEBUG=1</string>
+						<string>DEBUG=1</string>
 						<string>COCOS2D_DEBUG=1</string>
 					</array>
 				</dict>
@@ -56,7 +56,7 @@
 				<dict>
 					<key>GCC_PREPROCESSOR_DEFINITIONS</key>
 					<array>
-						<string>CC_ENABLE_BOX2D_INTEGRATION=1</string>
+						<string>NDEBUG NS_BLOCK_ASSERTIONS=1 DEBUG=0 COCOS2D_DEBUG=0</string>
 						<string>NDEBUG</string>
 						<string>NS_BLOCK_ASSERTIONS=1</string>
 					</array>
