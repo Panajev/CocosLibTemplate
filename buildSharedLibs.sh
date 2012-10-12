@@ -3,12 +3,12 @@
 DOWNLOAD_GIT="FALSE"
 
 #To download the latest tag
-SAFE_TAG=("" "" "" "" "")
+SAFE_TAG=("" "" "" "" "" "")
 
 #To download a specific tag
-#SAFE_TAG=("v1.1.2" "v1.2.8" "1.1.6" "1.0.0" "1.0.0")
+#SAFE_TAG=("v1.1.2" "v1.2.8" "v1.1.6" "v1.0.0" "v1.0.0" "v1.0.1")
 
-LIBS=("Utilities ${SAFE_TAG[0]}" "CocosLib ${SAFE_TAG[1]}" "CocosTools ${SAFE_TAG[2]}" "PRKit ${SAFE_TAG[3]}" "SneakyInput ${SAFE_TAG[4]}")
+LIBS=("Utilities ${SAFE_TAG[0]}" "CocosLib ${SAFE_TAG[1]}" "CocosTools ${SAFE_TAG[2]}" "PRKit ${SAFE_TAG[3]}" "SneakyInput ${SAFE_TAG[4]}" "CCItemsScroller ${SAFE_TAG[5]}")
 rm -rf ~/Programming/SharedLibs
 rm -rf ~/Programming/SharedLibsMac
 mkdir -p ~/Programming
