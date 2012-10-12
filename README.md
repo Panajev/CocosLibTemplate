@@ -15,6 +15,12 @@ CocosTools: https://github.com/Panajev/CocosTools
 
 Utilities: https://github.com/Panajev/Utilities
 
+PRKit: https://github.com/Panajev/PRKit
+
+SneakyInput: https://github.com/Panajev/SneakyInput
+
+CCItemsScroller (not used in the template): https://github.com/Panajev/CCItemsScroller
+
 
 HOWTO Install
 -------------
